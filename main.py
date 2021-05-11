@@ -15,3 +15,11 @@ while playing:
             sys.exit()
             playing = False
     pygame.display.update()
+
+
+
+
+
+
+
+
