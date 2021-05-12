@@ -16,11 +16,7 @@ playing = True
 #            playing = False
 #    pygame.display.update()
 
-import pygame
-import sys
-
 # initializing the constructor
-pygame.init()
 
 # screen resolution
 res = (720, 720)
@@ -50,7 +46,7 @@ smallfont = pygame.font.SysFont('Corbel', 35)
 
 # rendering a text written in
 # this font
-text = smallfont.render('quit', True, color)
+text = smallfont.render('QUIT', True, color)
 
 while True:
 
