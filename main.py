@@ -46,7 +46,7 @@ smallfont = pygame.font.SysFont('Courier New', 45)
 
 # rendering a text written in
 # this font
-text = smallfont.render('QUIT', True, color)
+text = smallfont.render('Quit', True, color)
 
 while True:
 
