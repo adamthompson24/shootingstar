@@ -31,7 +31,7 @@ color = (255, 255, 255)
 color_light = (170, 170, 170)
 
 # dark shade of the button
-color_dark = (100, 100, 100)
+color_dark = (230, 230, 0)
 
 # stores the width of the
 # screen into a variable
@@ -64,7 +64,7 @@ while True:
                 pygame.quit()
 
                 # fills the screen with a color
-    screen.fill((60, 25, 60))
+    screen.fill((0, 0, 0))
 
     # stores the (x,y) coordinates into
     # the variable as a tuple
