@@ -42,7 +42,7 @@ width = screen.get_width()
 height = screen.get_height()
 
 # defining a font
-smallfont = pygame.font.SysFont('Ariel', 45)
+smallfont = pygame.font.SysFont('Courier New', 45)
 
 # rendering a text written in
 # this font
