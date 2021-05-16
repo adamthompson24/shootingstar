@@ -244,7 +244,7 @@ def game_loop():
 # Score
         scorecounter(score)
 
-#When hit by asteroid 1
+    #When hit by asteroid 1
         if spaceship.spaceship_y < asteroid1.coord_y + asteroid1.hitbox_y and spaceship.spaceship_y > asteroid1.coord_y or spaceship.spaceship_y + spaceship.hitbox_y > asteroid1.coord_y and spaceship.spaceship_y + spaceship.hitbox_y < asteroid1.coord_y + asteroid1.hitbox_y:
             if spaceship.spaceship_x > asteroid1.coord_x and spaceship.spaceship_x < asteroid1.coord_x + asteroid1.hitbox_x or spaceship.spaceship_x + spaceship.hitbox_x > asteroid1.coord_x and spaceship.spaceship_x + spaceship.hitbox_x < asteroid1.coord_x + asteroid1.hitbox_x:
                 crash("Oh No! Your Spaceship Was Hit!")
