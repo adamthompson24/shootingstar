@@ -27,20 +27,21 @@ clickStartImg = pygame.image.load("images/clickedStartIcon.png")
 clickQuitImg = pygame.image.load("images/clickedQuitIcon.png")
 selectText = pygame.image.load("images/selectscreentext.png")
 
-#SettingFrame
+#Making the Window
 display_width = 800
 display_height = 600
 gameDisplay = pygame.display.set_mode((display_width, display_height))
-pygame.display.set_caption("Dodgin' Doggo")
+pygame.display.set_caption("Shooting Star")
 
-#SettingClock
+#Setting Clock
 clock = pygame.time.Clock()
 
-#PlayerClassParameters
+#Player Class Parameters
 playerparms = []
-dog1parms = [dogImg, 5, 377, 450, 36, 30, 1.1]
-dog2parms = [dog2Img,3.5,380,510,30,25, 1.02]
-#ButtonClass
+SpaceShip1parms = [dogImg, 5, 377, 450, 36, 30, 1.1]
+SpaceShip2parms = [dog2Img,3.5,380,510,30,25, 1.02]
+
+#Assigns the buttons to choose your spaceship
 class Button:
     def __init__(self, img_in, x, y, width, height, img_act, x_act, y_act, action = None):
         mouse = pygame.mouse.get_pos()
@@ -52,7 +53,8 @@ class Button:
                 action()
         else:
             gameDisplay.blit(img_in,(x,y))
-#ButtonsForCharacterSelection
+
+#Allows the mouse to be used to click the spaceships
 class Button2:
     def __init__(self, img_in, x, y, width, height, img_act, x_act, y_act, parms, action=None):
         mouse = pygame.mouse.get_pos()
@@ -72,7 +74,7 @@ class Button2:
         else:
             gameDisplay.blit(img_in, (x, y))
 
-# BackgroundClass
+#Shows the background of the game
 class Background:
     def __init__(self, bg_img, bg_x, bg_y):
         self.bg_x = bg_x
