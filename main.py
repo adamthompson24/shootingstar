@@ -83,10 +83,10 @@ class Background:
 
 # PlayerClass
 class Player:
-    def __init__(self,p_img,speedIn,dog_x,dog_y,hitbox_x,hitbox_y,speedmultiplier):
+    def __init__(self,p_img,speedIn,spaceship_x,spaceship_y,hitbox_x,hitbox_y,speedmultiplier):
         self.speed = speedIn
-        self.dog_x = dog_x
-        self.dog_y = dog_y
+        self.spaceship_x = spaceship_x
+        self.spaceship_y = spaceship_y
         self.p_img = p_img
         self.hitbox_x = hitbox_x
         self.hitbox_y = hitbox_y
@@ -174,7 +174,7 @@ def selectScreen():
 #MainGame
 def game_loop():
 #CreatingObjects
-    dog = Player(playerparms[0],playerparms[1],playerparms[2],playerparms[3],playerparms[4],playerparms[5],playerparms[6])
+    spaceship = Player(playerparms[0],playerparms[1],playerparms[2],playerparms[3],playerparms[4],playerparms[5],playerparms[6])
     bone = Gameobject(star1, 5, random.randrange(0, display_width - 20),-600,40,35)
     chocolate1 = Gameobject(asteroid1, 3, random.randrange(0, display_width - 20),-600,40,35)
     chocolate2 = Gameobject(asteroid1, 3, random.randrange(0, display_width - 20),-1000,40,35)
@@ -196,7 +196,7 @@ def game_loop():
         gameDisplay.blit(chocolate2.b_image, (chocolate2.coord_x, chocolate2.coord_y))
         gameDisplay.blit(vacuum.b_image, (vacuum.coord_x, vacuum.coord_y))
 #Player
-        gameDisplay.blit(dog.p_img, (dog.dog_x,dog.dog_y))
+        gameDisplay.blit(spaceship.p_img, (spaceship.spaceship_x,spaceship.spaceship_y))
 
 #Events
         for event in pygame.event.get():
@@ -204,15 +204,15 @@ def game_loop():
                 pygame.QUIT()
                 quit()
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT and dog.dog_x > 0:
-                    x_change = dog.speed*-1 + -1*dog.speedmult*score
-                elif event.key == pygame.K_RIGHT and dog.dog_x < display_width - 45:
-                    x_change = dog.speed + dog.speedmult*score
+                if event.key == pygame.K_LEFT and spaceship.spaceship_x > 0:
+                    x_change = spaceship.speed*-1 + -1*spaceship.speedmult*score
+                elif event.key == pygame.K_RIGHT and spaceship.spaceship_x < display_width - 45:
+                    x_change = spaceship.speed + spaceship.speedmult*score
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
                     x_change = 0
 
-        dog.dog_x += x_change
+        spaceship.spaceship_x += x_change
 
         # print(event)
 
@@ -225,7 +225,7 @@ def game_loop():
         # vac_y += 10
 
 # Boundaries
-        if dog.dog_x > display_width - dog.hitbox_x or dog.dog_x < 0:
+        if spaceship.spaceship_x > display_width - spaceship.hitbox_x or spaceship.spaceship_x < 0:
             x_change = 0
 
 # RecallingObjects
@@ -245,20 +245,20 @@ def game_loop():
         scorecounter(score)
 
 #Message when spaceship hits asteroid
-        if dog.dog_y < chocolate1.coord_y + chocolate1.hitbox_y and dog.dog_y > chocolate1.coord_y or dog.dog_y + dog.hitbox_y > chocolate1.coord_y and dog.dog_y + dog.hitbox_y < chocolate1.coord_y + chocolate1.hitbox_y:
-            if dog.dog_x > chocolate1.coord_x and dog.dog_x < chocolate1.coord_x + chocolate1.hitbox_x or dog.dog_x + dog.hitbox_x > chocolate1.coord_x and dog.dog_x + dog.hitbox_x < chocolate1.coord_x + chocolate1.hitbox_x:
+        if spaceship.spaceship_y < chocolate1.coord_y + chocolate1.hitbox_y and spaceship.spaceship_y > chocolate1.coord_y or spaceship.spaceship_y + spaceship.hitbox_y > chocolate1.coord_y and spaceship.spaceship_y + spaceship.hitbox_y < chocolate1.coord_y + chocolate1.hitbox_y:
+            if spaceship.spaceship_x > chocolate1.coord_x and spaceship.spaceship_x < chocolate1.coord_x + chocolate1.hitbox_x or spaceship.spaceship_x + spaceship.hitbox_x > chocolate1.coord_x and spaceship.spaceship_x + spaceship.hitbox_x < chocolate1.coord_x + chocolate1.hitbox_x:
                 crash("Oh No! Your Spaceship Blew Up!")
                 # Choc2
-        if dog.dog_y < chocolate2.coord_y + chocolate2.hitbox_y and dog.dog_y > chocolate2.coord_y or dog.dog_y + dog.hitbox_y > chocolate2.coord_y and dog.dog_y + dog.hitbox_y < chocolate2.coord_y + chocolate2.hitbox_y:
-            if dog.dog_x > chocolate2.coord_x and dog.dog_x < chocolate2.coord_x + chocolate2.hitbox_x or dog.dog_x + dog.hitbox_x > chocolate2.coord_x and dog.dog_x + dog.hitbox_x < chocolate2.coord_x + chocolate2.hitbox_x:
+        if spaceship.spaceship_y < chocolate2.coord_y + chocolate2.hitbox_y and spaceship.spaceship_y > chocolate2.coord_y or spaceship.spaceship_y + spaceship.hitbox_y > chocolate2.coord_y and spaceship.spaceship_y + spaceship.hitbox_y < chocolate2.coord_y + chocolate2.hitbox_y:
+            if spaceship.spaceship_x > chocolate2.coord_x and spaceship.spaceship_x < chocolate2.coord_x + chocolate2.hitbox_x or spaceship.spaceship_x + spaceship.hitbox_x > chocolate2.coord_x and spaceship.spaceship_x + spaceship.hitbox_x < chocolate2.coord_x + chocolate2.hitbox_x:
                 crash("Oh no! Your Spaceship Blew Up!")
     # Vacuum
-        if dog.dog_y < vacuum.coord_y + vacuum.hitbox_y:
-            if dog.dog_x > vacuum.coord_x and dog.dog_x < vacuum.coord_x + vacuum.hitbox_x or dog.dog_x + dog.hitbox_x > vacuum.coord_x and dog.dog_x + dog.hitbox_x < vacuum.coord_x + vacuum.hitbox_x:
+        if spaceship.spaceship_y < vacuum.coord_y + vacuum.hitbox_y:
+            if spaceship.spaceship_x > vacuum.coord_x and spaceship.spaceship_x < vacuum.coord_x + vacuum.hitbox_x or spaceship.spaceship_x + spaceship.hitbox_x > vacuum.coord_x and spaceship.spaceship_x + spaceship.hitbox_x < vacuum.coord_x + vacuum.hitbox_x:
                 crash("Oh no! Your Spaceship Blew up!")
     # Bone
-        if dog.dog_y < bone.coord_y + bone.hitbox_y and dog.dog_y > bone.coord_y or dog.dog_y + dog.hitbox_y > bone.coord_y and dog.dog_y + dog.hitbox_y < bone.coord_y + bone.hitbox_y:
-            if dog.dog_x > bone.coord_x and dog.dog_x < bone.coord_x + bone.hitbox_x or dog.dog_x + dog.hitbox_x > bone.coord_x and dog.dog_x + dog.hitbox_x < bone.coord_x + bone.hitbox_x:
+        if spaceship.spaceship_y < bone.coord_y + bone.hitbox_y and spaceship.spaceship_y > bone.coord_y or spaceship.spaceship_y + spaceship.hitbox_y > bone.coord_y and spaceship.spaceship_y + spaceship.hitbox_y < bone.coord_y + bone.hitbox_y:
+            if spaceship.spaceship_x > bone.coord_x and spaceship.spaceship_x < bone.coord_x + bone.hitbox_x or spaceship.spaceship_x + spaceship.hitbox_x > bone.coord_x and spaceship.spaceship_x + spaceship.hitbox_x < bone.coord_x + bone.hitbox_x:
                 bone.coord_y = -10
                 bone.coord_x = random.randrange(0, display_width - 25)
                 score += 1
