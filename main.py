@@ -258,7 +258,8 @@ def game_loop():
         if spaceship.spaceship_y < asteroid3.coord_y + asteroid3.hitbox_y:
             if spaceship.spaceship_x > asteroid3.coord_x and spaceship.spaceship_x < asteroid3.coord_x + asteroid3.hitbox_x or spaceship.spaceship_x + spaceship.hitbox_x > asteroid3.coord_x and spaceship.spaceship_x + spaceship.hitbox_x < asteroid3.coord_x + asteroid3.hitbox_x:
                 crash("Oh no! Your Spaceship Was Hit!")
-    # Star
+
+    #When spaceship collects star
         if spaceship.spaceship_y < star.coord_y + star.hitbox_y and spaceship.spaceship_y > star.coord_y or spaceship.spaceship_y + spaceship.hitbox_y > star.coord_y and spaceship.spaceship_y + spaceship.hitbox_y < star.coord_y + star.hitbox_y:
             if spaceship.spaceship_x > star.coord_x and spaceship.spaceship_x < star.coord_x + star.hitbox_x or spaceship.spaceship_x + spaceship.hitbox_x > star.coord_x and spaceship.spaceship_x + spaceship.hitbox_x < star.coord_x + star.hitbox_x:
                 star.coord_y = -10
