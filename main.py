@@ -12,14 +12,14 @@ green = (17, 124, 47)
 blue = (0, 0, 255)
 
 #Loads images in
-sunImg = pygame.image.load("images/spacebackgroundd.png")
-dogImg = pygame.image.load("images/rocket2.png")
-clickedDogImg = pygame.image.load("images/rocket2.png")
-dog2Img = pygame.image.load("images/astro6.png")
-clickedDog2Img = pygame.image.load("images/astro6.png")
-boneImg = pygame.image.load("images/starrr.png")
-chocolateImg = pygame.image.load("images/astro7.png")
-vacuumImg = pygame.image.load("images/frieball.png")
+spacebackground = pygame.image.load("images/spacebackgroundd.png")
+rocket2pic = pygame.image.load("images/rocket2.png")
+rocket2pic2 = pygame.image.load("images/rocket2.png")
+rocket1pic = pygame.image.load("images/astro6.png")
+rocket1pic1 = pygame.image.load("images/astro6.png")
+star1 = pygame.image.load("images/starrr.png")
+asteroid1 = pygame.image.load("images/astro7.png")
+asteroid2 = pygame.image.load("images/frieball.png")
 startImg = pygame.image.load("images/starticon.png")
 quitImg = pygame.image.load("images/quiticon.png")
 titleImg = pygame.image.load("images/SHooting3.png")
@@ -38,8 +38,8 @@ clock = pygame.time.Clock()
 
 #Player Class Parameters
 playerparms = []
-SpaceShip1parms = [dogImg, 5, 377, 450, 36, 30, 1.1]
-SpaceShip2parms = [dog2Img,3.5,380,510,30,25, 1.02]
+SpaceShip1parms = [rocket2pic, 5, 377, 450, 36, 30, 1.1]
+SpaceShip2parms = [rocket1pic,3.5,380,510,30,25, 1.02]
 
 #Assigns the buttons to choose your spaceship
 class Button:
@@ -165,8 +165,8 @@ def selectScreen():
 
         gameDisplay.fill(white)
         gameDisplay.blit(selectText,(200,150))
-        SpaceShip1Select = Button2(dogImg, 280,260,40,150,clickedDogImg,278,226,SpaceShip1parms,game_loop)
-        SpaceShip2select = Button2(dog2Img,480,260,40,100, clickedDog2Img,479,239,SpaceShip2parms,game_loop)
+        SpaceShip1Select = Button2(rocket2pic, 280,260,40,150,rocket2pic2,278,226,SpaceShip1parms,game_loop)
+        SpaceShip2select = Button2(rocket1pic,480,260,40,100, rocket1pic1,479,239,SpaceShip2parms,game_loop)
 
         pygame.display.update()
         clock.tick(15)
@@ -175,10 +175,10 @@ def selectScreen():
 def game_loop():
 #CreatingObjects
     dog = Player(playerparms[0],playerparms[1],playerparms[2],playerparms[3],playerparms[4],playerparms[5],playerparms[6])
-    bone = Gameobject(boneImg, 5, random.randrange(0, display_width - 20),-600,40,35)
-    chocolate1 = Gameobject(chocolateImg, 3, random.randrange(0, display_width - 20),-600,40,35)
-    chocolate2 = Gameobject(chocolateImg, 3, random.randrange(0, display_width - 20),-1000,40,35)
-    vacuum = Gameobject(vacuumImg, 4, random.randrange(0, display_width - 20),random.randrange(-2000, -1000),55,100)
+    bone = Gameobject(star1, 5, random.randrange(0, display_width - 20),-600,40,35)
+    chocolate1 = Gameobject(asteroid1, 3, random.randrange(0, display_width - 20),-600,40,35)
+    chocolate2 = Gameobject(asteroid1, 3, random.randrange(0, display_width - 20),-1000,40,35)
+    vacuum = Gameobject(asteroid2, 4, random.randrange(0, display_width - 20),random.randrange(-2000, -1000),55,100)
 #Constants
     x_change = 0
     score = 0
@@ -189,7 +189,7 @@ def game_loop():
 
 #Background
         gameDisplay.fill(white)
-        bg = Background(sunImg, 0, 0)
+        bg = Background(spacebackground, 0, 0)
 # Objects
         gameDisplay.blit(bone.b_image, (bone.coord_x, bone.coord_y))
         gameDisplay.blit(chocolate1.b_image, (chocolate1.coord_x, chocolate1.coord_y))
