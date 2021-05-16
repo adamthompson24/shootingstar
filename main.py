@@ -4,14 +4,14 @@ import random
 
 pygame.init()
 
-# R,G,B - SomeColors
+#Colours for the game
 black = (0, 0, 0)
 white = (255, 255, 255)
 red = (255, 0, 0)
 green = (17, 124, 47)
 blue = (0, 0, 255)
 
-#LoadingImages
+#Loads images in
 sunImg = pygame.image.load("images/spacebackgroundd.png")
 dogImg = pygame.image.load("images/rocket2.png")
 clickedDogImg = pygame.image.load("images/rocket2.png")
@@ -27,7 +27,7 @@ clickStartImg = pygame.image.load("images/clickedStartIcon.png")
 clickQuitImg = pygame.image.load("images/clickedQuitIcon.png")
 selectText = pygame.image.load("images/CHOOSE3png.png")
 
-#Making the Window
+#Creating the Window
 display_width = 800
 display_height = 600
 gameDisplay = pygame.display.set_mode((display_width, display_height))
@@ -128,7 +128,7 @@ def message_display(text):
 def crash(message):
     message_display(message)
 
-#QuitFunction
+#Function to quit
 def quitgame():
     pygame.quit()
     quit()
@@ -165,8 +165,8 @@ def selectScreen():
 
         gameDisplay.fill(white)
         gameDisplay.blit(selectText,(200,150))
-        dogSelect = Button2(dogImg, 280,260,40,150,clickedDogImg,278,226,dog1parms,game_loop)
-        dog2select = Button2(dog2Img,480,260,40,100, clickedDog2Img,479,239,dog2parms,game_loop)
+        SpaceShip1Select = Button2(dogImg, 280,260,40,150,clickedDogImg,278,226,SpaceShip1parms,game_loop)
+        SpaceShip2select = Button2(dog2Img,480,260,40,100, clickedDog2Img,479,239,SpaceShip2parms,game_loop)
 
         pygame.display.update()
         clock.tick(15)
@@ -244,19 +244,18 @@ def game_loop():
 # Score
         scorecounter(score)
 
-# Collisons
-    # Choc
+#Message when spaceship hits asteroid
         if dog.dog_y < chocolate1.coord_y + chocolate1.hitbox_y and dog.dog_y > chocolate1.coord_y or dog.dog_y + dog.hitbox_y > chocolate1.coord_y and dog.dog_y + dog.hitbox_y < chocolate1.coord_y + chocolate1.hitbox_y:
             if dog.dog_x > chocolate1.coord_x and dog.dog_x < chocolate1.coord_x + chocolate1.hitbox_x or dog.dog_x + dog.hitbox_x > chocolate1.coord_x and dog.dog_x + dog.hitbox_x < chocolate1.coord_x + chocolate1.hitbox_x:
-                crash("Oh no! Doggo got sick")
+                crash("Oh No! Your Spaceship Blew Up!")
                 # Choc2
         if dog.dog_y < chocolate2.coord_y + chocolate2.hitbox_y and dog.dog_y > chocolate2.coord_y or dog.dog_y + dog.hitbox_y > chocolate2.coord_y and dog.dog_y + dog.hitbox_y < chocolate2.coord_y + chocolate2.hitbox_y:
             if dog.dog_x > chocolate2.coord_x and dog.dog_x < chocolate2.coord_x + chocolate2.hitbox_x or dog.dog_x + dog.hitbox_x > chocolate2.coord_x and dog.dog_x + dog.hitbox_x < chocolate2.coord_x + chocolate2.hitbox_x:
-                crash("Oh no! Doggo got sick!")
+                crash("Oh no! Your Spaceship Blew Up!")
     # Vacuum
         if dog.dog_y < vacuum.coord_y + vacuum.hitbox_y:
             if dog.dog_x > vacuum.coord_x and dog.dog_x < vacuum.coord_x + vacuum.hitbox_x or dog.dog_x + dog.hitbox_x > vacuum.coord_x and dog.dog_x + dog.hitbox_x < vacuum.coord_x + vacuum.hitbox_x:
-                crash("Oh no! Doggo got spooked!")
+                crash("Oh no! Your Spaceship Blew up!")
     # Bone
         if dog.dog_y < bone.coord_y + bone.hitbox_y and dog.dog_y > bone.coord_y or dog.dog_y + dog.hitbox_y > bone.coord_y and dog.dog_y + dog.hitbox_y < bone.coord_y + bone.hitbox_y:
             if dog.dog_x > bone.coord_x and dog.dog_x < bone.coord_x + bone.hitbox_x or dog.dog_x + dog.hitbox_x > bone.coord_x and dog.dog_x + dog.hitbox_x < bone.coord_x + bone.hitbox_x:
