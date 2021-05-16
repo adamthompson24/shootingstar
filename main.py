@@ -7,8 +7,6 @@ pygame.init()
 #Colour for the game
 black = (0, 0, 0)
 white = (255, 255, 255)
-red = (255, 0, 0)
-green = (17, 124, 47)
 blue = (0, 0, 255)
 
 #Loads images in
@@ -41,7 +39,7 @@ playerparms = []
 SpaceShip1parms = [rocket2pic, 5, 377, 450, 36, 30, 1.1]
 SpaceShip2parms = [rocket1pic,3.5,380,510,30,25, 1.02]
 
-#Assigns the buttons to choose your spaceship
+# Allows mouse to be used
 class Button:
     def __init__(self, img_in, x, y, width, height, img_act, x_act, y_act, action = None):
         mouse = pygame.mouse.get_pos()
@@ -54,7 +52,7 @@ class Button:
         else:
             gameDisplay.blit(img_in,(x,y))
 
-#Allows the mouse to be used to click the spaceships
+# Allows the mouse to be used
 class Button2:
     def __init__(self, img_in, x, y, width, height, img_act, x_act, y_act, parms, action=None):
         mouse = pygame.mouse.get_pos()
@@ -74,14 +72,14 @@ class Button2:
         else:
             gameDisplay.blit(img_in, (x, y))
 
-#Shows the background of the game
+# Gives coordinates of background
 class Background:
     def __init__(self, bg_img, bg_x, bg_y):
         self.bg_x = bg_x
         self.bg_y = bg_y
         gameDisplay.blit(bg_img, (bg_x, bg_y))
 
-# PlayerClass
+# Sets hitbox and speed of spaceship
 class Player:
     def __init__(self,p_img,speedIn,spaceship_x,spaceship_y,hitbox_x,hitbox_y,speedmultiplier):
         self.speed = speedIn
@@ -93,7 +91,7 @@ class Player:
         self.speedmult = speedmultiplier
 
 
-# GameObjectsClass
+# Sets hitbox and speed of asteroids
 class Gameobject:
     def __init__(self, b_image, speed, coord_x, coord_y, hitbox_x, hitbox_y):
         self.b_image = b_image
@@ -103,13 +101,13 @@ class Gameobject:
         self.hitbox_x = hitbox_x
         self.hitbox_y = hitbox_y
 
-# ScoreFunction
+# Score Function
 def scorecounter(count):
     font = pygame.font.SysFont(None, 25)
-    text = font.render("Score:" + str(count), True, black)
+    text = font.render("Stars Collected:" + str(count), True, white)
     gameDisplay.blit(text, (0, 0))
 
-# CrashFunction/MessageDisplay
+#When crashing into an asteroid message is displayed
 def text_objects(text, font):
     textsurface = font.render(text, True, blue)
     return textsurface, textsurface.get_rect()
@@ -153,7 +151,7 @@ def mainmenu():
         pygame.display.update()
         clock.tick(15)
 
-#CharacterSelect
+#User can select what ship they want to use
 def selectScreen():
     select = True
 
@@ -173,32 +171,37 @@ def selectScreen():
 
 #MainGame
 def game_loop():
-#CreatingObjects
+
+#Creates the falling objects and spaceships
     spaceship = Player(playerparms[0],playerparms[1],playerparms[2],playerparms[3],playerparms[4],playerparms[5],playerparms[6])
     star = Gameobject(star1, 5, random.randrange(0, display_width - 20),-600,40,35)
     asteroid1 = Gameobject(asteroid1pic, 3, random.randrange(0, display_width - 20),-600,40,35)
     asteroid2 = Gameobject(asteroid1pic, 3, random.randrange(0, display_width - 20),-1000,40,35)
     asteroid3 = Gameobject(asteroid2pic, 4, random.randrange(0, display_width - 20),random.randrange(-2000, -1000),55,100)
-#Constants
+
+#Setting Variables
     x_change = 0
     score = 0
 
     gameexit = False
-#GameLoop
+
+#Gameloop to keep it running
     while not gameexit:
 
-#Background
+#Game background
         gameDisplay.fill(white)
         bg = Background(spacebackground, 0, 0)
-# Objects
+
+#Images for asteroids and stars
         gameDisplay.blit(star.b_image, (star.coord_x, star.coord_y))
         gameDisplay.blit(asteroid1.b_image, (asteroid1.coord_x, asteroid1.coord_y))
         gameDisplay.blit(asteroid2.b_image, (asteroid2.coord_x, asteroid2.coord_y))
         gameDisplay.blit(asteroid3.b_image, (asteroid3.coord_x, asteroid3.coord_y))
-#Player
+
+#Users spaceship
         gameDisplay.blit(spaceship.p_img, (spaceship.spaceship_x,spaceship.spaceship_y))
 
-#Events
+#Controls for the ship
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.QUIT()
@@ -214,21 +217,17 @@ def game_loop():
 
         spaceship.spaceship_x += x_change
 
-        # print(event)
-
-# ObjectSpeeds
+#Speed of the objects
         star.coord_y += star.speed
-        asteroid1.coord_y += asteroid1.speed + 1.2 * score
-        asteroid2.coord_y += asteroid1.speed + 1.2 * score
+        asteroid1.coord_y += asteroid1.speed + 1.01 * score
+        asteroid2.coord_y += asteroid1.speed + 1.01 * score
         asteroid3.coord_y += asteroid3.speed
-        # if score >= 1:
-        # vac_y += 10
 
-# Boundaries
+#Making sure the ship is in the width of the screen
         if spaceship.spaceship_x > display_width - spaceship.hitbox_x or spaceship.spaceship_x < 0:
             x_change = 0
 
-# RecallingObjects
+#Created boundaries for the falling objects
         if star.coord_y > display_height:
             star.coord_y = -10
             star.coord_x = random.randrange(0, display_width - 25)
@@ -241,7 +240,7 @@ def game_loop():
         if asteroid3.coord_y > display_height:
             asteroid3.coord_y = -2000
             asteroid3.coord_x = random.randrange(0, display_width - 56)
-# Score
+#Score
         scorecounter(score)
 
     #When hit by asteroid 1
