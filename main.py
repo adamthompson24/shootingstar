@@ -151,6 +151,7 @@ def mainmenu():
                 quit()
 
         gameDisplay.fill(black)
+        bg = Background(titlepic1, 0, 0)
 
         titletext = gameDisplay.blit(titleImg, (275, 200))
         startButton = Button(startImg, 280, 260, 60, 20, clickStartImg, 273, 258, selectScreen)
