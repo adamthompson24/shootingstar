@@ -21,7 +21,6 @@ asteroid1pic = pygame.image.load("images/astro7.png")
 asteroid2pic = pygame.image.load("images/frieball.png")
 startImg = pygame.image.load("images/starticon.png")
 quitImg = pygame.image.load("images/quiticon.png")
-titleImg = pygame.image.load("images/SHooting3.png")
 clickStartImg = pygame.image.load("images/clickedStartIcon.png")
 clickQuitImg = pygame.image.load("images/clickedQuitIcon.png")
 selectText = pygame.image.load("images/CHOOSE3png.png")
@@ -153,7 +152,6 @@ def mainmenu():
         gameDisplay.fill(black)
         bg = Background(titlepic1, 0, 0)
 
-        titletext = gameDisplay.blit(titleImg, (275, 200))
         startButton = Button(startImg, 280, 260, 60, 20, clickStartImg, 273, 258, selectScreen)
         quitButton = Button(quitImg, 475, 260, 60, 20, clickQuitImg, 470, 258, quitgame)
 
