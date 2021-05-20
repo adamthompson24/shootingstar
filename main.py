@@ -152,8 +152,8 @@ def mainmenu():
         gameDisplay.fill(black)
         bg = Background(titlepic1, 0, 0)
 
-        startButton = Button(startImg, 280, 450, 60, 20, clickStartImg, 273, 258, selectScreen)
-        quitButton = Button(quitImg, 475, 450, 60, 20, clickQuitImg, 470, 258, quitgame)
+        startButton = Button(startImg, 280, 450, 60, 20, clickStartImg, 273, 400, selectScreen)
+        quitButton = Button(quitImg, 475, 450, 60, 20, clickQuitImg, 470, 400, quitgame)
 
         pygame.display.update()
         clock.tick(15)
