@@ -10,7 +10,7 @@ white = (255, 255, 255)
 blue = (0, 0, 255)
 
 # Loads images
-titlepic1 = pygame.image.load("images/title1.png")
+titlepic1 = pygame.image.load("images/titlescreen2.png")
 spacebackground = pygame.image.load("images/nbackground1.png")
 rocket2pic = pygame.image.load("images/nred1.png")
 rocket2pic2 = pygame.image.load("images/nred1.png")
@@ -19,10 +19,10 @@ rocket1pic1 = pygame.image.load("images/nblue1.png")
 star1 = pygame.image.load("images/nstar1.png")
 asteroid1pic = pygame.image.load("images/astro7.png")
 asteroid2pic = pygame.image.load("images/frieball.png")
-startImg = pygame.image.load("images/starticon.png")
-quitImg = pygame.image.load("images/quiticon.png")
-clickStartImg = pygame.image.load("images/clickedStartIcon.png")
-clickQuitImg = pygame.image.load("images/clickedQuitIcon.png")
+startImg = pygame.image.load("images/ttitle1.png")
+quitImg = pygame.image.load("images/quit2.png")
+clickStartImg = pygame.image.load("images/clickedttitle1.png")
+clickQuitImg = pygame.image.load("images/clickedquit1.png")
 selectText = pygame.image.load("images/CHOOSE3png.png")
 
 # Creating the Window
@@ -152,8 +152,8 @@ def mainmenu():
         gameDisplay.fill(black)
         bg = Background(titlepic1, 0, 0)
 
-        startButton = Button(startImg, 280, 260, 60, 20, clickStartImg, 273, 258, selectScreen)
-        quitButton = Button(quitImg, 475, 260, 60, 20, clickQuitImg, 470, 258, quitgame)
+        startButton = Button(startImg, 308.5, 341.39, 183, 36, clickStartImg, 308.5, 341.39, selectScreen)
+        quitButton = Button(quitImg, 323.86, 471.44, 148, 42, clickQuitImg, 323.86, 471.44, quitgame)
 
         pygame.display.update()
         clock.tick(15)
