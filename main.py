@@ -9,7 +9,7 @@ black = (0, 0, 0)
 white = (255, 255, 255)
 blue = (0, 0, 255)
 
-# Loads images
+# Load images
 titlepic1 = pygame.image.load("images/titlescreen2.png")
 spacebackground = pygame.image.load("images/nbackground1.png")
 rocket2pic = pygame.image.load("images/nred1.png")
