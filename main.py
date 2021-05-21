@@ -24,6 +24,8 @@ quitImg = pygame.image.load("images/quit2.png")
 clickStartImg = pygame.image.load("images/clickedttitle1.png")
 clickQuitImg = pygame.image.load("images/clickedquit1.png")
 selectText = pygame.image.load("images/CHOOSE3png.png")
+helpImg = pygame.image.load("images/help1.png")
+clickHelpImg = pygame.image.load("images/clickHelp1.png")
 
 # Creating the Window
 display_width = 800
@@ -153,7 +155,7 @@ def mainmenu():
         bg = Background(titlepic1, 0, 0)
 
         startButton = Button(startImg, 308.5, 341.39, 183, 36, clickStartImg, 308.5, 341.39, selectScreen)
-        # helpButton = Button(startImg, 308.5, 341.39, 183, 36, clickStartImg, 308.5, 341.39, selectScreen)
+        helpButton = Button(helpImg, 322.81, 406.23, 150, 36, clickHelpImg, 322.81, 406.23, selectScreen)
         quitButton = Button(quitImg, 323.86, 471.44, 148, 42, clickQuitImg, 323.86, 471.44, quitgame)
 
         pygame.display.update()
