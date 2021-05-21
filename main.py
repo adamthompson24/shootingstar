@@ -153,6 +153,7 @@ def mainmenu():
         bg = Background(titlepic1, 0, 0)
 
         startButton = Button(startImg, 308.5, 341.39, 183, 36, clickStartImg, 308.5, 341.39, selectScreen)
+        # helpButton = Button(startImg, 308.5, 341.39, 183, 36, clickStartImg, 308.5, 341.39, selectScreen)
         quitButton = Button(quitImg, 323.86, 471.44, 148, 42, clickQuitImg, 323.86, 471.44, quitgame)
 
         pygame.display.update()
