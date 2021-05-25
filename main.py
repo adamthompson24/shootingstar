@@ -10,6 +10,8 @@ white = (255, 255, 255)
 blue = (0, 0, 255)
 
 # Load images
+redx1 = pygame.image.load("images/redx.png")
+whitex1 = pygame.image.load("images/whitex.png")
 helpscreen1 = pygame.image.load("images/helpscreen.png")
 titlepic1 = pygame.image.load("images/titlescreen2.png")
 spacebackground = pygame.image.load("images/nbackground1.png")
@@ -141,7 +143,6 @@ def quitgame():
     pygame.quit()
     quit()
 
-
 # MainMenu
 def mainmenu():
     menu = True
@@ -156,12 +157,31 @@ def mainmenu():
         bg = Background(titlepic1, 0, 0)
 
         startButton = Button(startImg, 308.5, 341.39, 183, 36, clickStartImg, 308.5, 341.39, selectScreen)
-        helpButton = Button(helpImg, 322.81, 406.23, 150, 36, clickHelpImg, 322.81, 406.23, selectScreen)
+        helpButton = Button(helpImg, 322.81, 406.23, 150, 36, clickHelpImg, 322.81, 406.23, helpScreen)
         quitButton = Button(quitImg, 323.86, 471.44, 148, 42, clickQuitImg, 323.86, 471.44, quitgame)
 
         pygame.display.update()
         clock.tick(15)
 
+# HelpScreen
+def helpScreen():
+    help1 = True
+
+    while help1:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+                pygame.display.update()
+                clock.tick(15)
+
+        gameDisplay.fill(black)
+        bg = Background(helpscreen1, 0, 0)
+        helpbackbutton = Button(whitex1, 16, 16, 64, 64, redx1, 16, 16, mainmenu)
+
+        pygame.display.update()
+        clock.tick(15)
 
 # User can select what ship they want to use
 def selectScreen():
@@ -286,6 +306,7 @@ def game_loop():
 
 mainmenu()
 selectScreen()
+helpScreen()
 game_loop()
 pygame.QUIT()
 quit()
