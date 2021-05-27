@@ -10,6 +10,13 @@ white = (255, 255, 255)
 blue = (0, 0, 255)
 
 # Load images
+level11 = pygame.image.load("images/1level1.png")
+level22 = pygame.image.load("images/2level2.png")
+level33 = pygame.image.load("images/3level3.png")
+level111 = pygame.image.load("images/1level2.png")
+level222 = pygame.image.load("images/1level22.png")
+level333 = pygame.image.load("images/1level33.png")
+selectlevelscreen = pygame.image.load("images/levelscreen1.png")
 selectscreenmenu = pygame.image.load("images/selectshipscreen.png")
 redx1 = pygame.image.load("images/redx.png")
 whitex1 = pygame.image.load("images/whitex.png")
@@ -194,9 +201,10 @@ def levelScreen():
                 quit()
 
         gameDisplay.fill(black)
-        gameDisplay.blit(selectscreenmenu, (0, 0))
-        SpaceShip1Select = Button(rocket2pic, 258, 268, 40, 150, rocket2pic2, 250, 239, selectScreen)
-        SpaceShip2select = Button(rocket1pic, 512, 297, 40, 100, rocket1pic1, 506, 280, selectScreen)
+        gameDisplay.blit(selectlevelscreen, (0, 0))
+        level1Select = Button(level11, 76, 218, 169, 169, level111, 76, 218, selectScreen)
+        level2select = Button(level22, 319, 218, 169, 169, level222, 319, 218, selectScreen)
+        level3Select = Button(level33, 562, 218, 169, 169, level333, 562, 218, selectScreen)
 
         pygame.display.update()
         clock.tick(15)
