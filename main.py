@@ -157,7 +157,7 @@ def mainmenu():
         gameDisplay.fill(black)
         bg = Background(titlepic1, 0, 0)
 
-        startButton = Button(startImg, 308.5, 341.39, 183, 36, clickStartImg, 308.5, 341.39, selectScreen)
+        startButton = Button(startImg, 308.5, 341.39, 183, 36, clickStartImg, 308.5, 341.39, levelScreen)
         helpButton = Button(helpImg, 322.81, 406.23, 150, 36, clickHelpImg, 322.81, 406.23, helpScreen)
         quitButton = Button(quitImg, 323.86, 471.44, 148, 42, clickQuitImg, 323.86, 471.44, quitgame)
 
@@ -180,6 +180,23 @@ def helpScreen():
         gameDisplay.fill(black)
         bg = Background(helpscreen1, 0, 0)
         helpbackbutton = Button(whitex1, 16, 16, 64, 64, redx1, 16, 16, mainmenu)
+
+        pygame.display.update()
+        clock.tick(15)
+
+def levelScreen():
+    level = True
+
+    while level:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+        gameDisplay.fill(black)
+        gameDisplay.blit(selectscreenmenu, (0, 0))
+        SpaceShip1Select = Button(rocket2pic, 258, 268, 40, 150, rocket2pic2, 250, 239, selectScreen)
+        SpaceShip2select = Button(rocket1pic, 512, 297, 40, 100, rocket1pic1, 506, 280, selectScreen)
 
         pygame.display.update()
         clock.tick(15)
