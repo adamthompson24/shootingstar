@@ -61,6 +61,8 @@ class Button:
         if x + width > mouse[0] > x and y + height > mouse[1] > y:
             gameDisplay.blit(img_act, (x_act, y_act))
             if click[0] and action != None:
+                # change
+
                 time.sleep(2)
                 action()
         else:
@@ -328,6 +330,9 @@ def game_loop():
 
         pygame.display.update()
         clock.tick(60)
+
+
+
 
 
 mainmenu()
