@@ -252,6 +252,8 @@ def game_loop():
         gameDisplay.fill(white)
         bg = Background(spacebackground, 0, 0)
 
+        helpbackbutton = Button(whitex1, 16, 16, 64, 64, redx1, 16, 16, mainmenu)
+
         # Images for asteroids and stars
         gameDisplay.blit(star.b_image, (star.coord_x, star.coord_y))
         gameDisplay.blit(asteroid1.b_image, (asteroid1.coord_x, asteroid1.coord_y))
@@ -325,6 +327,9 @@ def game_loop():
                 star.coord_x = random.randrange(0, display_width - 25)
                 score += 1
                 print(score)
+
+        if score == 1:
+                    crash("Level Complete!")
 
         pygame.display.update()
         clock.tick(60)
