@@ -61,8 +61,6 @@ class Button:
         if x + width > mouse[0] > x and y + height > mouse[1] > y:
             gameDisplay.blit(img_act, (x_act, y_act))
             if click[0] and action != None:
-                # change
-
                 time.sleep(2)
                 action()
         else:
@@ -254,7 +252,7 @@ def game_loop():
         gameDisplay.fill(white)
         bg = Background(spacebackground, 0, 0)
 
-        helpbackbutton = Button(whitex1, 16, 16, 64, 64, redx1, 16, 16, mainmenu)
+        maingamebackbutton = Button(whitex1, 16, 16, 64, 64, redx1, 16, 16, mainmenu)
 
         # Images for asteroids and stars
         gameDisplay.blit(star.b_image, (star.coord_x, star.coord_y))
@@ -335,9 +333,6 @@ def game_loop():
 
         pygame.display.update()
         clock.tick(60)
-
-
-
 
 
 mainmenu()
