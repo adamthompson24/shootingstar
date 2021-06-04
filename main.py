@@ -10,6 +10,11 @@ white = (255, 255, 255)
 blue = (0, 0, 255)
 
 # Load images
+beatlevelscreen1 = pygame.image.load("images/continue1.png")
+clickedbeatlevelcontinue1 = pygame.image.load("images/clickedbeatcontinuelevel11.png")
+clickedbeatlevelquit1 = pygame.image.load("images/clickedbeatquit11.png")
+beatlevelcontinue1 = pygame.image.load("images/continue11.png")
+beatlevelquit1 = pygame.image.load("images/quit11.png")
 level11 = pygame.image.load("images/1level1.png")
 level22 = pygame.image.load("images/2level2.png")
 level33 = pygame.image.load("images/3level3.png")
@@ -328,8 +333,17 @@ def game_loop():
                 score += 1
                 print(score)
 
+
+
         if score == 1:
-                    crash("Level Complete!")
+
+            gameDisplay.fill(black)
+            gameDisplay.blit(beatlevelscreen1, (0, 0))
+            continueLevel = Button(beatlevelcontinue1, 119, 260, 555, 38, clickedbeatlevelcontinue1, 119, 260, game_loop)
+            quitLevel = Button(beatlevelquit1, 323, 329, 148, 41, clickedbeatlevelquit1, 323, 329, levelScreen)
+
+            pygame.display.update()
+            clock.tick(15)
 
         pygame.display.update()
         clock.tick(60)
