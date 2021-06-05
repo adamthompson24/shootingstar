@@ -14,6 +14,8 @@ currentlevel3 = pygame.image.load("images/sayslevel2.png")
 currentlevel2 = pygame.image.load("images/sayslevel22.png")
 currentlevel1 = pygame.image.load("images/sayslevel1.png")
 level1complete = pygame.image.load("images/level1complete1.png")
+level2complete = pygame.image.load("images/complete5.png")
+level3complete = pygame.image.load("images/complete35.png")
 level11 = pygame.image.load("images/1level1.png")
 level22 = pygame.image.load("images/2level2.png")
 level33 = pygame.image.load("images/3level3.png")
@@ -34,6 +36,7 @@ rocket1pic1 = pygame.image.load("images/clcikedship2.png")
 star1 = pygame.image.load("images/nstar1.png")
 asteroid1pic = pygame.image.load("images/astro2.png")
 asteroid2pic = pygame.image.load("images/astro4.png")
+asteroid3pic = pygame.image.load("images/astro35.png")
 startImg = pygame.image.load("images/ttitle1.png")
 quitImg = pygame.image.load("images/quit2.png")
 clickStartImg = pygame.image.load("images/clickedttitle1.png")
@@ -136,7 +139,7 @@ def text_objects(text, font):
     return textsurface, textsurface.get_rect()
 
 
-def message_display(text):
+def message_display1(text):
     largeText = pygame.font.Font("freesansbold.ttf", 46)
     TextSurf, TextRect = text_objects(text, largeText)
     TextRect.center = ((display_width / 2), (display_height / 2))
@@ -144,12 +147,33 @@ def message_display(text):
     pygame.display.update()
     time.sleep(2)
     game_loop1()
+
+def crash1(message):
+    message_display1(message)
+
+def message_display2(text):
+    largeText = pygame.font.Font("freesansbold.ttf", 46)
+    TextSurf, TextRect = text_objects(text, largeText)
+    TextRect.center = ((display_width / 2), (display_height / 2))
+    gameDisplay.blit(TextSurf, TextRect)
+    pygame.display.update()
+    time.sleep(2)
     game_loop2()
+
+def crash2(message):
+    message_display2(message)
+
+def message_display3(text):
+    largeText = pygame.font.Font("freesansbold.ttf", 46)
+    TextSurf, TextRect = text_objects(text, largeText)
+    TextRect.center = ((display_width / 2), (display_height / 2))
+    gameDisplay.blit(TextSurf, TextRect)
+    pygame.display.update()
+    time.sleep(2)
     game_loop3()
 
-
-def crash(message):
-    message_display(message)
+def crash3(message):
+    message_display3(message)
 
 
 # Function to quit
@@ -241,9 +265,7 @@ def game_loop1():
                        playerparms[6])
     star = Gameobject(star1, 5, random.randrange(0, display_width - 20), -600, 40, 35)
     asteroid1 = Gameobject(asteroid1pic, 3, random.randrange(0, display_width - 20), -600, 40, 35)
-    asteroid2 = Gameobject(asteroid1pic, 3, random.randrange(0, display_width - 20), -1000, 40, 35)
-    asteroid3 = Gameobject(asteroid2pic, 4, random.randrange(0, display_width - 20), random.randrange(-2000, -1000), 55,
-                           100)
+
 
     # Setting Variables
     x_change = 0
@@ -262,8 +284,6 @@ def game_loop1():
         # Images for asteroids and stars
         gameDisplay.blit(star.b_image, (star.coord_x, star.coord_y))
         gameDisplay.blit(asteroid1.b_image, (asteroid1.coord_x, asteroid1.coord_y))
-        gameDisplay.blit(asteroid2.b_image, (asteroid2.coord_x, asteroid2.coord_y))
-        gameDisplay.blit(asteroid3.b_image, (asteroid3.coord_x, asteroid3.coord_y))
 
         # Users spaceship
         gameDisplay.blit(spaceship.p_img, (spaceship.spaceship_x, spaceship.spaceship_y))
@@ -287,8 +307,7 @@ def game_loop1():
         # Speed of the objects
         star.coord_y += star.speed
         asteroid1.coord_y += asteroid1.speed + 1.01 * score
-        asteroid2.coord_y += asteroid1.speed + 1.01 * score
-        asteroid3.coord_y += asteroid3.speed
+
 
         # Making sure the ship is in the width of the screen
         if spaceship.spaceship_x > display_width - spaceship.hitbox_x or spaceship.spaceship_x < 0:
@@ -301,29 +320,14 @@ def game_loop1():
         if asteroid1.coord_y > display_height - 10:
             asteroid1.coord_y = -10
             asteroid1.coord_x = random.randrange(0, display_width - 25)
-        if asteroid2.coord_y > display_height:
-            asteroid2.coord_y = -410
-            asteroid2.coord_x = random.randrange(0, display_width - 25)
-        if asteroid3.coord_y > display_height:
-            asteroid3.coord_y = -2000
-            asteroid3.coord_x = random.randrange(0, display_width - 56)
+
         # Score
         scorecounter(score)
 
         # When hit by asteroid 1
         if spaceship.spaceship_y < asteroid1.coord_y + asteroid1.hitbox_y and spaceship.spaceship_y > asteroid1.coord_y or spaceship.spaceship_y + spaceship.hitbox_y > asteroid1.coord_y and spaceship.spaceship_y + spaceship.hitbox_y < asteroid1.coord_y + asteroid1.hitbox_y:
             if spaceship.spaceship_x > asteroid1.coord_x and spaceship.spaceship_x < asteroid1.coord_x + asteroid1.hitbox_x or spaceship.spaceship_x + spaceship.hitbox_x > asteroid1.coord_x and spaceship.spaceship_x + spaceship.hitbox_x < asteroid1.coord_x + asteroid1.hitbox_x:
-                crash("Oh No! Your Spaceship Was Hit!")
-
-        # When hit by asteroid 2
-        if spaceship.spaceship_y < asteroid2.coord_y + asteroid2.hitbox_y and spaceship.spaceship_y > asteroid2.coord_y or spaceship.spaceship_y + spaceship.hitbox_y > asteroid2.coord_y and spaceship.spaceship_y + spaceship.hitbox_y < asteroid2.coord_y + asteroid2.hitbox_y:
-            if spaceship.spaceship_x > asteroid2.coord_x and spaceship.spaceship_x < asteroid2.coord_x + asteroid2.hitbox_x or spaceship.spaceship_x + spaceship.hitbox_x > asteroid2.coord_x and spaceship.spaceship_x + spaceship.hitbox_x < asteroid2.coord_x + asteroid2.hitbox_x:
-                crash("Oh no! Your Spaceship Was Hit!")
-
-        # When hit by asteroid 3
-        if spaceship.spaceship_y < asteroid3.coord_y + asteroid3.hitbox_y:
-            if spaceship.spaceship_x > asteroid3.coord_x and spaceship.spaceship_x < asteroid3.coord_x + asteroid3.hitbox_x or spaceship.spaceship_x + spaceship.hitbox_x > asteroid3.coord_x and spaceship.spaceship_x + spaceship.hitbox_x < asteroid3.coord_x + asteroid3.hitbox_x:
-                crash("Oh no! Your Spaceship Was Hit!")
+                crash1("Oh No! Your Spaceship Was Hit!")
 
         # When spaceship collects star
         if spaceship.spaceship_y < star.coord_y + star.hitbox_y and spaceship.spaceship_y > star.coord_y or spaceship.spaceship_y + spaceship.hitbox_y > star.coord_y and spaceship.spaceship_y + spaceship.hitbox_y < star.coord_y + star.hitbox_y:
@@ -367,7 +371,6 @@ def game_loop2():
                        playerparms[6])
     star = Gameobject(star1, 5, random.randrange(0, display_width - 20), -600, 40, 35)
     asteroid1 = Gameobject(asteroid1pic, 3, random.randrange(0, display_width - 20), -600, 40, 35)
-    asteroid2 = Gameobject(asteroid1pic, 3, random.randrange(0, display_width - 20), -1000, 40, 35)
     asteroid3 = Gameobject(asteroid2pic, 4, random.randrange(0, display_width - 20), random.randrange(-2000, -1000), 55,
                            100)
 
@@ -388,7 +391,6 @@ def game_loop2():
         # Images for asteroids and stars
         gameDisplay.blit(star.b_image, (star.coord_x, star.coord_y))
         gameDisplay.blit(asteroid1.b_image, (asteroid1.coord_x, asteroid1.coord_y))
-        gameDisplay.blit(asteroid2.b_image, (asteroid2.coord_x, asteroid2.coord_y))
         gameDisplay.blit(asteroid3.b_image, (asteroid3.coord_x, asteroid3.coord_y))
 
         # Users spaceship
@@ -413,8 +415,7 @@ def game_loop2():
         # Speed of the objects
         star.coord_y += star.speed
         asteroid1.coord_y += asteroid1.speed + 1.01 * score
-        asteroid2.coord_y += asteroid1.speed + 1.01 * score
-        asteroid3.coord_y += asteroid3.speed
+        asteroid3.coord_y += asteroid3.speed + 1.01 * score
 
         # Making sure the ship is in the width of the screen
         if spaceship.spaceship_x > display_width - spaceship.hitbox_x or spaceship.spaceship_x < 0:
@@ -427,9 +428,6 @@ def game_loop2():
         if asteroid1.coord_y > display_height - 10:
             asteroid1.coord_y = -10
             asteroid1.coord_x = random.randrange(0, display_width - 25)
-        if asteroid2.coord_y > display_height:
-            asteroid2.coord_y = -410
-            asteroid2.coord_x = random.randrange(0, display_width - 25)
         if asteroid3.coord_y > display_height:
             asteroid3.coord_y = -2000
             asteroid3.coord_x = random.randrange(0, display_width - 56)
@@ -439,17 +437,12 @@ def game_loop2():
         # When hit by asteroid 1
         if spaceship.spaceship_y < asteroid1.coord_y + asteroid1.hitbox_y and spaceship.spaceship_y > asteroid1.coord_y or spaceship.spaceship_y + spaceship.hitbox_y > asteroid1.coord_y and spaceship.spaceship_y + spaceship.hitbox_y < asteroid1.coord_y + asteroid1.hitbox_y:
             if spaceship.spaceship_x > asteroid1.coord_x and spaceship.spaceship_x < asteroid1.coord_x + asteroid1.hitbox_x or spaceship.spaceship_x + spaceship.hitbox_x > asteroid1.coord_x and spaceship.spaceship_x + spaceship.hitbox_x < asteroid1.coord_x + asteroid1.hitbox_x:
-                crash("Oh No! Your Spaceship Was Hit!")
-
-        # When hit by asteroid 2
-        if spaceship.spaceship_y < asteroid2.coord_y + asteroid2.hitbox_y and spaceship.spaceship_y > asteroid2.coord_y or spaceship.spaceship_y + spaceship.hitbox_y > asteroid2.coord_y and spaceship.spaceship_y + spaceship.hitbox_y < asteroid2.coord_y + asteroid2.hitbox_y:
-            if spaceship.spaceship_x > asteroid2.coord_x and spaceship.spaceship_x < asteroid2.coord_x + asteroid2.hitbox_x or spaceship.spaceship_x + spaceship.hitbox_x > asteroid2.coord_x and spaceship.spaceship_x + spaceship.hitbox_x < asteroid2.coord_x + asteroid2.hitbox_x:
-                crash("Oh no! Your Spaceship Was Hit!")
+                crash2("Oh No! Your Spaceship Was Hit!")
 
         # When hit by asteroid 3
         if spaceship.spaceship_y < asteroid3.coord_y + asteroid3.hitbox_y:
             if spaceship.spaceship_x > asteroid3.coord_x and spaceship.spaceship_x < asteroid3.coord_x + asteroid3.hitbox_x or spaceship.spaceship_x + spaceship.hitbox_x > asteroid3.coord_x and spaceship.spaceship_x + spaceship.hitbox_x < asteroid3.coord_x + asteroid3.hitbox_x:
-                crash("Oh no! Your Spaceship Was Hit!")
+                crash2("Oh no! Your Spaceship Was Hit!")
 
         # When spaceship collects star
         if spaceship.spaceship_y < star.coord_y + star.hitbox_y and spaceship.spaceship_y > star.coord_y or spaceship.spaceship_y + spaceship.hitbox_y > star.coord_y and spaceship.spaceship_y + spaceship.hitbox_y < star.coord_y + star.hitbox_y:
@@ -460,7 +453,7 @@ def game_loop2():
 
                 print(score)
         if score == 1:
-            gameDisplay.blit(level1complete, (110, 222))
+            gameDisplay.blit(level2complete, (110, 222))
             pygame.display.update()
             clock.tick(30)
 
@@ -493,7 +486,7 @@ def game_loop3():
                        playerparms[6])
     star = Gameobject(star1, 5, random.randrange(0, display_width - 20), -600, 40, 35)
     asteroid1 = Gameobject(asteroid1pic, 3, random.randrange(0, display_width - 20), -600, 40, 35)
-    asteroid2 = Gameobject(asteroid1pic, 3, random.randrange(0, display_width - 20), -1000, 40, 35)
+    asteroid2 = Gameobject(asteroid3pic, 3, random.randrange(0, display_width - 20), -1000, 40, 35)
     asteroid3 = Gameobject(asteroid2pic, 4, random.randrange(0, display_width - 20), random.randrange(-2000, -1000), 55,
                            100)
 
@@ -539,8 +532,8 @@ def game_loop3():
         # Speed of the objects
         star.coord_y += star.speed
         asteroid1.coord_y += asteroid1.speed + 1.01 * score
-        asteroid2.coord_y += asteroid1.speed + 1.01 * score
-        asteroid3.coord_y += asteroid3.speed
+        asteroid2.coord_y += asteroid2.speed + 4 * score
+        asteroid3.coord_y += asteroid3.speed + 1.01 * score
 
         # Making sure the ship is in the width of the screen
         if spaceship.spaceship_x > display_width - spaceship.hitbox_x or spaceship.spaceship_x < 0:
@@ -565,17 +558,17 @@ def game_loop3():
         # When hit by asteroid 1
         if spaceship.spaceship_y < asteroid1.coord_y + asteroid1.hitbox_y and spaceship.spaceship_y > asteroid1.coord_y or spaceship.spaceship_y + spaceship.hitbox_y > asteroid1.coord_y and spaceship.spaceship_y + spaceship.hitbox_y < asteroid1.coord_y + asteroid1.hitbox_y:
             if spaceship.spaceship_x > asteroid1.coord_x and spaceship.spaceship_x < asteroid1.coord_x + asteroid1.hitbox_x or spaceship.spaceship_x + spaceship.hitbox_x > asteroid1.coord_x and spaceship.spaceship_x + spaceship.hitbox_x < asteroid1.coord_x + asteroid1.hitbox_x:
-                crash("Oh No! Your Spaceship Was Hit!")
+                crash3("Oh No! Your Spaceship Was Hit!")
 
         # When hit by asteroid 2
         if spaceship.spaceship_y < asteroid2.coord_y + asteroid2.hitbox_y and spaceship.spaceship_y > asteroid2.coord_y or spaceship.spaceship_y + spaceship.hitbox_y > asteroid2.coord_y and spaceship.spaceship_y + spaceship.hitbox_y < asteroid2.coord_y + asteroid2.hitbox_y:
             if spaceship.spaceship_x > asteroid2.coord_x and spaceship.spaceship_x < asteroid2.coord_x + asteroid2.hitbox_x or spaceship.spaceship_x + spaceship.hitbox_x > asteroid2.coord_x and spaceship.spaceship_x + spaceship.hitbox_x < asteroid2.coord_x + asteroid2.hitbox_x:
-                crash("Oh no! Your Spaceship Was Hit!")
+                crash3("Oh no! Your Spaceship Was Hit!")
 
         # When hit by asteroid 3
         if spaceship.spaceship_y < asteroid3.coord_y + asteroid3.hitbox_y:
             if spaceship.spaceship_x > asteroid3.coord_x and spaceship.spaceship_x < asteroid3.coord_x + asteroid3.hitbox_x or spaceship.spaceship_x + spaceship.hitbox_x > asteroid3.coord_x and spaceship.spaceship_x + spaceship.hitbox_x < asteroid3.coord_x + asteroid3.hitbox_x:
-                crash("Oh no! Your Spaceship Was Hit!")
+                crash3("Oh no! Your Spaceship Was Hit!")
 
         # When spaceship collects star
         if spaceship.spaceship_y < star.coord_y + star.hitbox_y and spaceship.spaceship_y > star.coord_y or spaceship.spaceship_y + spaceship.hitbox_y > star.coord_y and spaceship.spaceship_y + spaceship.hitbox_y < star.coord_y + star.hitbox_y:
@@ -586,7 +579,7 @@ def game_loop3():
 
                 print(score)
         if score == 1:
-            gameDisplay.blit(level1complete, (110, 222))
+            gameDisplay.blit(level3complete, (110, 222))
             pygame.display.update()
             clock.tick(30)
 
