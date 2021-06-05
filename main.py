@@ -235,6 +235,7 @@ def selectScreen():
 
 # MainGame
 def game_loop():
+
     # Creates the falling objects and spaceships
     spaceship = Player(playerparms[0], playerparms[1], playerparms[2], playerparms[3], playerparms[4], playerparms[5],
                        playerparms[6])
@@ -247,20 +248,10 @@ def game_loop():
     # Setting Variables
     x_change = 0
     score = 0
-
-    score = 0
-
-    if score == 1:
-        # gameDisplay.fill(black)
-        # gameDisplay.blit(beatlevelscreen1, (0, 0))
-        continueLevel = Button(beatlevelcontinue1, 119, 260, 555, 38, clickedbeatlevelcontinue1, 119, 260, game_loop)
-        quitLevel = Button(beatlevelquit1, 323, 329, 148, 41, clickedbeatlevelquit1, 323, 329, levelScreen)
-
-        pygame.display.update()
-        clock.tick(15)
+    gameexit = False
 
     # Gameloop to keep it running
-    while score != 1:
+    while not False:
 
         # Game background
         gameDisplay.fill(white)
@@ -340,11 +331,17 @@ def game_loop():
                 star.coord_y = -10
                 star.coord_x = random.randrange(0, display_width - 25)
                 score += 1
+
                 print(score)
+        if score == 1:
+            # gameDisplay.fill(black)
+            # gameDisplay.blit(beatlevelscreen1, (0, 0))
+            continueLevel = Button(beatlevelcontinue1, 119, 260, 555, 38, clickedbeatlevelcontinue1, 119, 260,
+                                   game_loop)
+            quitLevel = Button(beatlevelquit1, 323, 329, 148, 41, clickedbeatlevelquit1, 323, 329, levelScreen)
 
-
-
-
+            pygame.display.update()
+            clock.tick(1)
 
         pygame.display.update()
         clock.tick(60)
