@@ -29,6 +29,8 @@ whitex1 = pygame.image.load("images/whitex.png")
 helpscreen1 = pygame.image.load("images/helpscreen.png")
 titlepic1 = pygame.image.load("images/titlescreen2.png")
 spacebackground = pygame.image.load("images/nbackground1.png")
+spacebackground2 = pygame.image.load("images/background222.png")
+spacebackground3 = pygame.image.load("images/background333.png")
 rocket2pic = pygame.image.load("images/nred1.png")
 rocket2pic2 = pygame.image.load("images/clickedship1.png")
 rocket1pic = pygame.image.load("images/nblue1.png")
@@ -384,7 +386,7 @@ def game_loop2():
 
         # Game background
         gameDisplay.fill(white)
-        bg = Background(spacebackground, 0, 0)
+        bg = Background(spacebackground2, 0, 0)
         gameDisplay.blit(currentlevel2, (249, 8))
         maingamebackbutton = Button(whitex1, 16, 16, 64, 64, redx1, 16, 16, mainmenu)
 
@@ -500,7 +502,7 @@ def game_loop3():
 
         # Game background
         gameDisplay.fill(white)
-        bg = Background(spacebackground, 0, 0)
+        bg = Background(spacebackground3, 0, 0)
         gameDisplay.blit(currentlevel3, (249, 8))
         maingamebackbutton = Button(whitex1, 16, 16, 64, 64, redx1, 16, 16, mainmenu)
 
@@ -532,7 +534,7 @@ def game_loop3():
         # Speed of the objects
         star.coord_y += star.speed
         asteroid1.coord_y += asteroid1.speed + 1.01 * score
-        asteroid2.coord_y += asteroid2.speed + 4 * score
+        asteroid2.coord_y += asteroid2.speed + 2 * score
         asteroid3.coord_y += asteroid3.speed + 1.01 * score
 
         # Making sure the ship is in the width of the screen
