@@ -531,7 +531,7 @@ def game_loop3():
 
         spaceship.spaceship_x += x_change
 
-        # Speed of the objects
+        # Speed of objects
         star.coord_y += star.speed
         asteroid1.coord_y += asteroid1.speed + 1.01 * score
         asteroid2.coord_y += asteroid2.speed + 2 * score
