@@ -4,6 +4,11 @@ import random
 
 pygame.init()
 
+# Set and play music on a loop
+gameSound = pygame.mixer.Sound("SpaceInvaderMusic1.mp3")
+gameSound.set_volume(0.2)
+gameSound.play(-1)
+
 # Define colours for game
 black = (0, 0, 0)
 white = (255, 255, 255)
